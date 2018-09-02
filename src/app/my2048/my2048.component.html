@@ -1,0 +1,14 @@
+<header>
+  <h1>2048</h1>
+  <a href="#" class="newgamebutton" (click)="newGame()">新游戏</a>
+  <p>分数: {{score}}</p>
+</header>
+
+<div class="grid-container">
+  <ng-container *ngFor="let items of container">
+    <div *ngFor="let cell of items" class="grid-cell" [id]="cell.id" [ngStyle]="cell.style"></div>
+  </ng-container>
+  <ng-container *ngFor="let items of board">
+    <div *ngFor="let cell of items" class="number-cell" [id]="cell.id" [ngStyle]="cell.style">{{cell.text}}</div>
+  </ng-container>
+</div>
