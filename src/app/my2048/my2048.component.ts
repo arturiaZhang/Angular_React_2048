@@ -394,18 +394,18 @@ export class My2048Component {
       return false;
     }
     for (let i = 0; i < 4; i++) {
-      for (let j = 1; j < 4; j++) {
+      for (let j = 2; j >= 0; j--) {
         const num: any = this.board[j][i];
         if (num.text !== 0) {
-          for (let k = 0; k < j; k++) {
+          for (let k = 3; k > j; k--) {
             const kNum: any = this.board[k][i];
-            const noBlockVertical: boolean = this.support.noBlockVertical(i, k, j, this.board);
-            if (kNum.text === 0 && noBlockVertical) {
+            const noBlockHorizontal: boolean = this.support.noBlockHorizontal(i, k, j, this.board);
+            if (kNum.text === 0 && noBlockHorizontal) {
               // move
               kNum.text = num.text;
               num.text = 0;
               continue;
-            } else if (num.text === kNum.text && noBlockVertical && !kNum.hasConflicted) {
+            } else if (num.text === kNum.text && noBlockHorizontal && !kNum.hasConflicted) {
               // move
               // add
               kNum.text += num.text;
@@ -420,7 +420,6 @@ export class My2048Component {
       }
     }
     this.updateBoard();
-    return true;
   }
 
 }
