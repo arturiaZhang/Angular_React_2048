@@ -317,7 +317,7 @@ export class My2048Component {
         if (num.text !== 0) {
           for (let k = 3; k > j; k--) {
             const kNum: any = this.board[i][k];
-            const noBlockHorizontal: boolean = this.support.noBlockHorizontal(i, k, j, this.board);
+            const noBlockHorizontal: boolean = this.support.noBlockHorizontal(i, j, k, this.board);
             if (kNum.text === 0 && noBlockHorizontal) {
               // move
               kNum.text = num.text;
@@ -399,13 +399,13 @@ export class My2048Component {
         if (num.text !== 0) {
           for (let k = 3; k > j; k--) {
             const kNum: any = this.board[k][i];
-            const noBlockHorizontal: boolean = this.support.noBlockHorizontal(i, k, j, this.board);
-            if (kNum.text === 0 && noBlockHorizontal) {
+            const noBlockVertical: boolean = this.support.noBlockVertical(i, j, k, this.board);
+            if (kNum.text === 0 && noBlockVertical) {
               // move
               kNum.text = num.text;
               num.text = 0;
               continue;
-            } else if (num.text === kNum.text && noBlockHorizontal && !kNum.hasConflicted) {
+            } else if (num.text === kNum.text && noBlockVertical && !kNum.hasConflicted) {
               // move
               // add
               kNum.text += num.text;
